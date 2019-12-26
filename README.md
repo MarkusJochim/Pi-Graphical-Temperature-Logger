@@ -95,9 +95,11 @@ After setting `CORRECTION_VALUE` to the values shown above, I did another run wi
 ![Measurement Example](/images/2019_12_24_to_2019_12_25_Diagram.jpg)
 
 As you can see, the values are now much closer to one another.<br><br>
-Here is how you can calculate the correction values specific to the sensors you own:<br><br>
-
+Here is how you can calculate the correction values specific to the sensors you own:<br>
 * Step 1:<br>Place all your sensors next to each other and wait for a few minutes before you start the script execution so that all sensors will reach the same temperature (in case you touched them). Then run the script overnight to get measurements from 9pm to 9am on the following day. You will find the measurements in the `9am_Data.csv` the script creates for that night.
+* Step 2:<br>Use Libre Office Calc or Excel to open `9am_Data.csv`. The white columns will exist and you will need to manually add the columns / calculations shown in the green and blue areas as per the following description:<br><br>Column M contains the average of the measurements taken by S0, S1, S2, S3 and S4. Column N takes that average and subtracts the temperature measured by S0. Columns O to R do the same for sensors S1 to S4.<br>![Excel Top](/images/Excel_top.jpg)
+
+
 
 
 
