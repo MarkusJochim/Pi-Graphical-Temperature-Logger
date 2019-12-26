@@ -12,7 +12,7 @@ _Last updated 12/26/2019_
 1. Tweaking Settings to your liking (Optional Step)
 1. Sensor calibration and correction values (Optional Step)
 
-![Hardware used](https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger/images/Hardware.jpg)
+![Hardware used](https://github.com/MarkusJochim/master/Pi-Graphical-Temperature-Logger/images/Hardware.jpg)
 
 #Overview
 
