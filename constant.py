@@ -34,6 +34,10 @@ SENSOR = {'S0': '28-030497796414',
 # When in doubt of how to determine which values to use:
 # Read instructions on https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
 CORRECTION_VALUE = {'S0': 0, 'S1': 0, 'S2': 0, 'S3': 0, 'S4': 0}
+#
+# Ignore the following line. These are my correction values which I leave here so that I can easily activate them.
+# CORRECTION_VALUE = {'S0': -0.0396, 'S1': 0.471, 'S2': 0.2518, 'S3': -0.1335, 'S4': -0.5497}
+
 
 # When checking which sensors are present, the code assumes that all sensor names start with the following prefix
 SENSOR_PREFIX = '28-*'
