@@ -18,7 +18,7 @@ MASCHINE = 'Pi'
 # You need to replace the values below with the unique sensor IDs of the sensors connected to your Pi.
 # When in doubt:
 # Read instructions on https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
-SENSOR = {'S0': '28-so030497796414',
+SENSOR = {'S0': '28-030497796414',
           'S1': '28-03049779ce67',
           'S2': '28-0304977984d7',
           'S3': '28-03019779549c',
