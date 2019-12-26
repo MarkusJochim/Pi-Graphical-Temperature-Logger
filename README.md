@@ -97,6 +97,11 @@ After setting `CORRECTION_VALUE` to the values shown above, I did another run wi
 As you can see, the values are now much closer to one another.<br><br>
 Here is how you can calculate the correction values specific to the sensors you own:<br><br>
 
+* Step 1:<br>Place all your sensors next to each other and wait for a few minutes before you start the script execution so that all sensors will reach the same temperature (in case you touched them). Then run the script overnight to get measurements from 9pm to 9am on the following day. You will find the measurements in the `9am_Data.csv` the script creates for that night.
+
+
+
+
 
 
 
