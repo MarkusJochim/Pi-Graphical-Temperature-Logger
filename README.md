@@ -64,9 +64,41 @@ Strictly speaking these are all the steps required to prepare you Raspberry Pi. 
 * Step 5:<br>Here are the \"sensor directories\" I see after executing Step 4 on my Pi:<br>![Sensor Directories](/images/sensor_directories.jpg)<br><br>Each sensor has a unique ID (similar to a MAC address on a WiFi or Ethernet NIC) and each sensor directory is named after the unique sensor ID of one of the 5 sensors connected to my Raspberry Pi.<br><br>Now change into one of the sensor directories. For instance, in my case, through a command such as `cd 28-03019779549c`.<br><br>Then enter:`cat w1_slave`<br><br>The output you will see will look similar to what is shown below. The key information is the t=21187 shown in the screenshot. If you divide this number by 1,000 the resulting value is the measured temperature in Celsius which was 21.187 degrees.<br>![cat_w1_slave](/images/cat_w1_slave.jpg)<br><br>
 * Step 6:<br>By repeating Step 5 for each sensor directory, you can get temperature reads from all connected sensors. Assuming you labeled your sensors S0 to S4 as suggested above, then now is the time to find out which sensor name (S0 to S4) maps to which sensor ID. Hold sensors S0 in your hand and check (as shown in step 5) from which sensor directory you get higher temperature reads through the `cat w1_slave` command. Once you found out which sensor directory represents S0, write that information down and repeat the process for sensors S1 to S4.
 
+# Running the Temperature Logger
+Download the Python files (`PiGraphicalTemperatureLogger.py`, `measurement.py`, `visualize.py` and `constant.py`) from the github repository by entering the following command:<br><br>`git clone https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger.git`<br><br>
+![Clone](/images/clone.jpg)
+Open the file `constant.py` with an editor and find the `SENSOR =` line. For all sensors S0 to S4 connected to your Pi, make sure to enter the correct Sensor ID as identified in Step 6 above. In case you are working with fewer or more sensors, either shorten the list accordingly, or add additional sensor names and IDs such as ‘S5’, ‘S6’, . . .<br><br>
+Then execute the following command:  `sudo python PiGraphicalTemperatureLogger.py`
+If you have multiple versions of python installed on your Pi, then make sure that `sudo python` starts a Python 3.x interpreter (as mentioned above, I tested the code on Python 3.7.3). Also, depending on your setup, you may need no do a `sudo python3` instead of `sudo python` and depending on also depending on your Raspberry Pi setup you may or may not need the `sudo` part of the command or may be OK with just doing a `python PiGraphicalTemperatureLogger.py`.One thing you will need to make sure is that your Python interpreter can import the pandas and matplotlib libraries mentioned above!<br><br>
+After entering this command, you should see an output similar to the picture below on your screen:<br>
+![Logger started](/images/started.jpg)<br><br>
+
+The script is now running. You should see a log file named `log_messages.txt` showing up in your working directory. At the end of each hour, on the hour, a .csv file with temperature measurement data will be created in a subdirectory. Also, every day at 9pm a jpg file will be created that visualizes the last 24 hours of temperature measurements.
+
+# Tweaking Settings to your liking (Optional Step)
+It is worth having a look at ‘constant.py’ as this file contains a couple of useful settings you can tweak to your liking. We already touched on the `SENSOR` setting. Other settings will determine things such as e.g. at what rate data is read from each sensor, what log level (`DEBUG`, `INFO` or `ERROR`) you want to apply and a few others.<br><br>
+While log entries labeled `DEBUG` or `INFO` are \"harmless\", entries labeled `ERROR` aren’t. If an error occurs it will not only be logged in the log file, but also the next jpg measurement diagram created will contain a message indicating that an error occurred. If, for instance, several subsequent attempts of reading a sensor value are unsuccessful and the maximum number of attempts (as defined by `READ_ATTEMPTS`) was reached without success, then an error will be reported in the log file and in the next jpg measurement diagram created. This could for example happen in case one of the sensors is temporarily disconnected from the Raspberry Pi during script execution.<br><br>
+As an aside:<br>
+When the script is started, it reports which sensors listed in `constant.py` it detected and which ones were not detected (if any). The Raspberry Pi responds a bit slow to connecting and disconnecting sensors in the sense of respective sensor directories appearing / disappearing in the file system. If, for instance, a sensor S2 is disconnected, then the associated sensor directory will be visible in the file system for at least some time. Obviously, there is no way of reading values from a disconnected sensor, but the sensor may be reported as connected upon startup of the script if it was disconnected just briefly before starting the script. If a sensor is disconnected the reported default temperature for that sensor in .csv files and jpg diagrams is -1,000 degrees Celsius. If a temporarily disconnected sensor is connected back to the Pi, the script will be able to successfully continue reading temperature values from it.
+
+# Sensor calibration and correction values (Optional Step)
+The following diagram shows measurements that were taken without applying any correction values (we will get to these in a minute) and with all 5 sensors located at the same spot and being exposed to the same room temperature overnight. 
+
+![Measurement Example](/images/2019_12_22_to_2019_12_23_Diagram.jpg)
+
+Looking at the sensor data it seems that there was an almost constant offset between measurements taken by the 5 sensors throughout the night. S4 always shows a higher temperature read than all other sensors, followed by S3, S0, S2 and finally S1. I therefore decided to introduce correction values that can be applied to measurements to compensate for measurement offsets specific to a certain sensor. The following screenshot shows the correction value settings specific for the 5 sensors I own. However, when you download the code from the github repository the `CORRECTION_VALUE` you will see are all set to 0, in other words, no correction values will be applied.
+![No correction values](/images/correction_zero.jpg)
+
+Let’s take an example: As already observed the S4 sensor I own always is a bit on the high side with its temperature readings. The S4 value of -0.5497 means that this value will be added to each temperature value read from sensor S4. So if for instance a temperature of 22.375 degrees Celsius is measured, then the corrected value that is stored / processed / displayed will be 22.375 + (-0.5497) = 21.8253 degrees Celsius.
+After setting `CORRECTION_VALUE` to the values shown above, I did another run with all 5 sensors located at the same spot. Here is the result:
+
+![Measurement Example](/images/2019_12_24_to_2019_12_25_Diagram.jpg)
+
+As you can see, the values are now much closer to one another.<br><br>
+Here is how you can calculate the correction values specific to the sensors you own:<br><br>
 
 
-    
-    
+
+
 
 
