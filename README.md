@@ -58,4 +58,15 @@ The sensors use the so called 1-wire protocol for serial data communication. The
 * Step 2:<br>At the bottom of this file add the following line: `dtoverlay=w1-gpio`<br>
 * Step 3:<br>Once you saved the file, restart you Raspberry Pi for the changes to become effective.<br>
 
+Strictly speaking these are all the steps required to prepare you Raspberry Pi. Executing the following additional steps at the command line will allow you to do a quick test of the sensors connected to you Pi and they will also enable you to write down which sensor (S0 to S4) has which sensors ID. This information will be required when configuring the script later on.
+
+* Step 4:<br>Enter<br>`sudo modprobe w1-gpio`<br>`sudo modprobe w1-therm`<br>`cd /sys/bus/w1/devices`<br>`ls`<br><br>
+* Step 5:<br>Here are the \"sensor directories\" I see after executing Step 4 on my Pi:<br>![Sensor Directories](/images/sensor_directories.jpg)<br><br>Each sensor has a unique ID (similar to a MAC address on a WiFi or Ethernet NIC) and each sensor directory is named after the unique sensor ID of one of the 5 sensors connected to my Raspberry Pi.<br><br>Now change into one of the sensor directories. For instance, in my case, through a command such as `cd 28-03019779549c`.<br><br>Then enter:`cat w1_slave`<br><br>The output you will see will look similar to what is shown below. The key information is the t=21187 shown in the screenshot. If you divide this number by 1,000 the resulting value is the measured temperature in Celsius which was 21.187 degrees.<br>![cat_w1_slave](/images/cat_w1_slave.jpg)<br><br>
+* Step 6:<br>By repeating Step 5 for each sensor directory, you can get temperature reads from all connected sensors. Assuming you labeled your sensors S0 to S4 as suggested above, then now is the time to find out which sensor name (S0 to S4) maps to which sensor ID. Hold sensors S0 in your hand and check (as shown in step 5) from which sensor directory you get higher temperature reads through the `cat w1_slave` command. Once you found out which sensor directory represents S0, write that information down and repeat the process for sensors S1 to S4.
+
+
+
+    
+    
+
 
