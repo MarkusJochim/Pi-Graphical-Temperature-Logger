@@ -1,4 +1,6 @@
 # Raspberry Pi Graphical Temperature Logger V1.0, Markus Jochim, Troy, Michigan, 01/2020
+# https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
+
 
 import time
 import os

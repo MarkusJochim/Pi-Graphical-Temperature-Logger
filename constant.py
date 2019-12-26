@@ -1,4 +1,5 @@
 # Raspberry Pi Graphical Temperature Logger V1.0, Markus Jochim, Troy, Michigan, 01/2020
+# https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
 
 import logging
 
@@ -14,7 +15,10 @@ SENSOR_SLAVE = '/w1_slave'
 MASCHINE = 'Pi'
 
 # All sensors connected must be listed in the following dictionary
-SENSOR = {'S0': '28-030497796414',
+# You need to replace the values below with the unique sensor IDs of the sensors connected to your Pi.
+# When in doubt:
+# Read instructions on https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
+SENSOR = {'S0': '28-so030497796414',
           'S1': '28-03049779ce67',
           'S2': '28-0304977984d7',
           'S3': '28-03019779549c',
@@ -27,7 +31,9 @@ SENSOR = {'S0': '28-030497796414',
 # Each correction value is added to a temperature value read from a sensor.
 # For example: Assume 'S3' is set to -0.1335 and the temperature value read from S3 is 23 degrees celsius.
 # In that case the corrected value that is stored and processed is 23+(-0.1335)=22.8665 degrees celsius.
-CORRECTION_VALUE = {'S0': -0.0396, 'S1': 0.471, 'S2': 0.2518, 'S3': -0.1335, 'S4': -0.5497}
+# When in doubt of how to determine which values to use:
+# Read instructions on https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
+CORRECTION_VALUE = {'S0': 0, 'S1': 0, 'S2': 0, 'S3': 0, 'S4': 0}
 
 # When checking which sensors are present, the code assumes that all sensor names start with the following prefix
 SENSOR_PREFIX = '28-*'
