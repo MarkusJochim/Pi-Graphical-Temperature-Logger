@@ -33,7 +33,7 @@ I created the Temperature Logger as my little ‘2019 Christmas break coding pro
 
 # Temperature Sensors
 
-I ordered five DS18b20 sensors and got them for about $2.6 a piece. These sensors can be easily found online. They have an operating temperature range of -55 to +125 degrees Celsius and accuracy of +/- 0.5 degrees Celsius over the range of -10 to +85 degrees Celsius. The ones I bought are waterproof and have a cable length of 2 meters. Since these have three wires (red (VCC), black (GND), yellow (Data)) I decided to simply solder these on to 3.5 mm audio connectors. I also bought 5 matching female stereo jack panel mount connectors.
+I ordered five DS18b20 sensors and got them for about $2.60 a piece. These sensors can be easily found online. They have an operating temperature range of -55 to +125 degrees Celsius and accuracy of +/- 0.5 degrees Celsius over the range of -10 to +85 degrees Celsius. The ones I bought are waterproof and have a cable length of 2 meters. Since these have three wires (red (VCC), black (GND), yellow (Data)) I decided to simply solder these on to 3.5 mm audio connectors. I also bought 5 matching female stereo jack panel mount connectors.
 
 ![Sensor and Connector](/images/Sensor_and_Connector.jpg)
 
