@@ -76,13 +76,13 @@ After entering this command, you should see an output similar to the picture bel
 
 The script is now running. You should see a log file named `log_messages.txt` showing up in your working directory. At the end of each hour, on the hour, a .csv file with temperature measurement data will be created in a subdirectory. Also, every day at 9pm a jpg file will be created that visualizes the last 24 hours of temperature measurements.
 
-# Tweaking Settings to your liking (Optional Step)
+# Tweaking Settings to your liking (optional step)
 It is worth having a look at ‘constant.py’ as this file contains a couple of useful settings you can tweak to your liking. We already touched on the `SENSOR` setting. Other settings will determine things such as e.g. at what rate data is read from each sensor, what log level (`DEBUG`, `INFO` or `ERROR`) you want to apply and a few others.<br><br>
 While log entries labeled `DEBUG` or `INFO` are \"harmless\", entries labeled `ERROR` aren’t. If an error occurs it will not only be logged in the log file, but also the next jpg measurement diagram created will contain a message indicating that an error occurred. If, for instance, several subsequent attempts of reading a sensor value are unsuccessful and the maximum number of attempts (as defined by `READ_ATTEMPTS`) was reached without success, then an error will be reported in the log file and in the next jpg measurement diagram created. This could for example happen in case one of the sensors is temporarily disconnected from the Raspberry Pi during script execution.<br><br>
 As an aside:<br>
 When the script is started, it reports which sensors listed in `constant.py` it detected and which ones were not detected (if any). The Raspberry Pi responds a bit slow to connecting and disconnecting sensors in the sense of respective sensor directories appearing / disappearing in the file system. If, for instance, a sensor S2 is disconnected, then the associated sensor directory will be visible in the file system for at least some time. Obviously, there is no way of reading values from a disconnected sensor, but the sensor may be reported as connected upon startup of the script if it was disconnected just briefly before starting the script. If a sensor is disconnected the reported default temperature for that sensor in .csv files and jpg diagrams is -1,000 degrees Celsius. If a temporarily disconnected sensor is connected back to the Pi, the script will be able to successfully continue reading temperature values from it.
 
-# Sensor calibration and correction values (Optional Step)
+# Sensor calibration and correction values (optional step)
 The following diagram shows measurements that were taken without applying any correction values (we will get to these in a minute) and with all 5 sensors located at the same spot and being exposed to the same room temperature overnight. 
 
 ![Measurement Example](/images/2019_12_22_to_2019_12_23_Diagram.jpg)
