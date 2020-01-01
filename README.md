@@ -11,7 +11,6 @@ _Last updated 12/26/2019_
 1. Running the Temperature Logger
 1. Tweaking Settings to your liking (optional step)
 1. Sensor calibration and correction values (optional step)
-1. My use case :wink:
 
 ![Hardware used](/images/Hardware.jpg)
 
@@ -102,14 +101,3 @@ Here is how you can calculate the correction values specific to the sensors you 
 * Step 3:<bR>The values in row 1441 that you will get for you sensors will then need to be used in `constant.py` as the values for the `CORRECTION_VALUE` dictionary:<br>`CORRECTION_VALUE = {'S0': -0.0396, 'S1': 0.471, 'S2': 0.2518, 'S3': -0.1335, 'S4': -0.5497}`<br><br>
   
 As you can tell from the calculation, there is an underlying assumption that the ‘true’ temperature value is the average of the temperatures measured by all 5 sensors. While this is not necessarily always true, the calibration step will at least accomplish that all sensors will return similar readings at the same temperature point. If you have a ‘golden sensor’ (e.g. in case you own a thermometer that is very precise), you can easily adjust calculations to not gravitate to the average of the temperature readings from all 5 sensor but to the values read from an high precision thermometer by introducing an additional offset to all 5 correction values.
-
-# My use case :wink:
-I recently bought a bed with a disappointingly flimsy slatted frame. Since my mattress is really heavy (and I guess I am not a featherweight either) the slats bent significantly causing a dip in the mattress which also felt like it was too soft. Overall a rather uncomfortable sleeping experience! I decided to buy some 3/4 inch (birch hardwood) to replace the slatted frame with a sturdy platform. I also added some support poles (birchwood is heavy ;-)). There is no dip in the mattress any longer and overall, I am quite pleased with the sleeping experience.<br>
-
-The one open question left was:<br><br>
-*Given that a slatted frame has gaps between the slats and the platform doesn't, does the mattress heat up over night more than it would on a slatted frame?*<br><br>
-So, I plan to place two sensors between the platform and the mattress (one on the left side and one on the right side of the bed). I will then place two additional sensors essentially at the same spots, but not between the platform and the mattress, but underneath the bed (taped to the platform).<br>
-![Platform](/images/platform.jpg)
-If there is no significant temperature difference between the sensors that sits between the platform and the mattress and the sensors that are placed at the same spot but underneath the bed, then, absent a delta in temperature, there is no “opportunity” for heat to dissipate and having a slatted frame with gaps instead of a platform wouldn’t make any difference. Since I have a fifth sensor I plan to place it outside of the window – just for fun and reference. The data isn't in yet, and I plan to let this run for a good 30 days or so before looking at the data and drawing a conclusion.
-
-Could I have measured the temperature with much less overhead with regular thermometers? Probably… but it would not have been anywhere close to being as much fun as I had with this little Christmas break coding project ;-)
