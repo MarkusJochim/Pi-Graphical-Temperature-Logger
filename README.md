@@ -1,7 +1,7 @@
 # Pi-Graphical-Temperature-Logger
 A Python based Graphical Temperature Logger for the Raspberry Pi
 
-_Markus Jochim, Troy, Michigan  (Last updated 12/26/2019)_
+_Markus Jochim, Troy, Michigan
 
 # Table of Contents
 
