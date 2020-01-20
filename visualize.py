@@ -1,6 +1,7 @@
 # Raspberry Pi Graphical Temperature Logger V1.0, Markus Jochim, Troy, Michigan, 01/2020
 # https://github.com/MarkusJochim/Pi-Graphical-Temperature-Logger
 
+import matplotlib
 import constant
 import os
 import pandas as pd
@@ -10,6 +11,8 @@ import matplotlib.dates as mdates
 import matplotlib.ticker as ticker
 import logging as log
 from matplotlib.gridspec import GridSpec
+
+matplotlib.use('Agg')
 
 
 def write_9am_9pm_csv_files(t_current):
